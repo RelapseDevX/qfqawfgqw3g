@@ -1,0 +1,1101 @@
+local invColor = "rgb(3, 254, 254)";
+
+local SythonV1Inventoryviewer = Instance.new("ScreenGui")
+local BG = Instance.new("Frame")
+local PlayersInfo = Instance.new("TextLabel")
+local Main = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Weapon = Instance.new("TextLabel")
+local Head = Instance.new("TextLabel")
+local Torso = Instance.new("TextLabel")
+local Legs = Instance.new("TextLabel")
+SythonV1Inventoryviewer.Name = "SythonV1 Inventory viewer"
+SythonV1Inventoryviewer.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+SythonV1Inventoryviewer.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+SythonV1Inventoryviewer.ResetOnSpawn = false
+BG.Name = "BG"
+BG.Parent = SythonV1Inventoryviewer
+BG.BackgroundColor3 = Color3.fromRGB(15, 14, 13)
+BG.BorderColor3 = Color3.fromRGB(33, 41, 16)
+BG.Position = UDim2.new(0.409292042, 0, 0.265256584, 0)
+BG.Size = UDim2.new(0, 281, 0, 14)
+BG.Active = true
+BG.Draggable = false;
+PlayersInfo.Name = "Player's Info"
+PlayersInfo.Parent = BG
+PlayersInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+PlayersInfo.BackgroundTransparency = 1.000
+PlayersInfo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+PlayersInfo.BorderSizePixel = 0
+PlayersInfo.Size = UDim2.new(0, 281, 0, 14)
+PlayersInfo.Font = Enum.Font.SourceSans
+PlayersInfo.Text = "No Target"
+PlayersInfo.TextColor3 = Color3.fromRGB(221, 221, 218)
+PlayersInfo.TextSize = 14.000
+PlayersInfo.RichText = true
+Main.Name = "Main"
+Main.Parent = BG
+Main.BackgroundColor3 = Color3.fromRGB(15, 14, 13)
+Main.BorderColor3 = Color3.fromRGB(33, 41, 16)
+Main.Position = UDim2.new(0, 0, 1.00000107, 5)
+Main.Size = UDim2.new(0, 281, 0, 84)
+UIListLayout.Parent = Main
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 2)
+Weapon.Name = "Weapon"
+Weapon.Parent = Main
+Weapon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Weapon.BackgroundTransparency = 1.000
+Weapon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Weapon.BorderSizePixel = 0
+Weapon.Position = UDim2.new(0.0213523135, 0, 0, 0)
+Weapon.Size = UDim2.new(0, 275, 0, 17)
+Weapon.Font = Enum.Font.SourceSans
+Weapon.Text = "Weapon  <font color=\"".. invColor.. "\">>  </font> None"
+Weapon.TextColor3 = Color3.fromRGB(221, 221, 218)
+Weapon.TextSize = 14.000
+Weapon.TextXAlignment = Enum.TextXAlignment.Left
+Weapon.RichText = true
+Head.Name = "Head"
+Head.Parent = Main
+Head.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Head.BackgroundTransparency = 1.000
+Head.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Head.BorderSizePixel = 0
+Head.Position = UDim2.new(0.0213523135, 0, 0, 0)
+Head.Size = UDim2.new(0, 275, 0, 17)
+Head.Font = Enum.Font.SourceSans
+Head.Text = "Head  <font color=\"".. invColor.. "\">>  </font> None"
+Head.TextColor3 = Color3.fromRGB(221, 221, 218)
+Head.TextSize = 14.000
+Head.TextXAlignment = Enum.TextXAlignment.Left
+Head.RichText = true
+Torso.Name = "Torso"
+Torso.Parent = Main
+Torso.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Torso.BackgroundTransparency = 1.000
+Torso.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Torso.BorderSizePixel = 0
+Torso.Position = UDim2.new(0.0213523135, 0, 0, 0)
+Torso.Size = UDim2.new(0, 275, 0, 17)
+Torso.Font = Enum.Font.SourceSans
+Torso.Text = "Torso  <font color=\"".. invColor.. "\">>  </font> None"
+Torso.TextColor3 = Color3.fromRGB(221, 221, 218)
+Torso.TextSize = 14.000
+Torso.TextXAlignment = Enum.TextXAlignment.Left
+Torso.RichText = true
+Legs.Name = "Legs"
+Legs.Parent = Main
+Legs.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Legs.BackgroundTransparency = 1.000
+Legs.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Legs.BorderSizePixel = 0
+Legs.Position = UDim2.new(0.0213523135, 0, 0, 0)
+Legs.Size = UDim2.new(0, 275, 0, 17)
+Legs.Font = Enum.Font.SourceSans
+Legs.Text = "Legs  <font color=\"".. invColor .."\">>  </font> None"
+Legs.TextColor3 = Color3.fromRGB(221, 221, 218)
+Legs.TextSize = 14.000
+Legs.TextXAlignment = Enum.TextXAlignment.Left
+Legs.RichText = true
+local Distance = Instance.new("TextLabel")
+Distance.Name = "Distance"
+Distance.Parent = BG
+Distance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Distance.BackgroundTransparency = 1.000
+Distance.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Distance.BorderSizePixel = 0
+Distance.Position = UDim2.new(1, -110, 1, 62) 
+Distance.Size = UDim2.new(0, 100, 0, 17)
+Distance.Font = Enum.Font.SourceSans
+Distance.TextColor3 = Color3.fromRGB(221, 221, 218)
+Distance.TextSize = 14.000
+Distance.RichText = true
+
+ local armor = {
+    "Leaf Shirt",
+    "Leaf Pants",
+    "Hide Pants",
+    "Hide Shirt",
+    "Iron Helmet",
+    "Iron Chestplate",
+    "Iron Greaves",
+    "Steel Helmet",
+    "Steel Chestplate",
+    "Steel Greaves",
+    "Adurite Helmet",
+    "Adurite Chestplate",
+    "Adurite Greaves",
+    "Crystal Crown",
+    "Crystal Chestplate",
+    "Crystal Greaves",
+    "Magnetite Mask",
+    "Magnetite Chestplate",
+    "Magnetite Greaves",
+    "Emerald Helmet",
+    "Emerald Chestplate",
+    "Emerald Greaves",
+    "Pink Diamond Hood",
+    "Pink Diamond Chestplate",
+    "Pink Diamond Greaves",
+    "Void Shroud",
+    "Void Chestplate",
+    "Void Greaves",
+    "God Halo",
+    "God Chestplate",
+    "God Legs"
+}
+
+local old_index; old_index = hookmetamethod(game, "__index", function(self, key)
+    if not checkcaller() and key == "Size" and self.Name == "Head" then
+        return Vector3.new(2,1,1)
+    end
+    return old_index(self, key)
+end)
+local sounds = {
+    Bubble = "rbxassetid://6534947588",
+    ["Call of Duty"] = "rbxassetid://5952120301",
+    ["CS:GO"] = "rbxassetid://6937353691",
+    Ding = "rbxassetid://7149516994",
+    Gamesense   = "rbxassetid://4817809188",
+    Laser       = "rbxassetid://7837461331",
+    Neverlose     = "rbxassetid://8726881116",
+    ["Old Fatality"] = "rbxassetid://6607142036",
+    One = "rbxassetid://7380502345",
+    Pop = "rbxassetid://198598793",
+    Rust = "rbxassetid://1255040462",
+    ["TF2"] = "rbxassetid://2868331684",
+    ["TF2 Critical"] = "rbxassetid://296102734"
+}
+local itemms = {
+    "Log","Essence","Iron","Jelly","Leaves","Adurite","Steel","Stone","Wood","Gold","Crystal Chunk","Pink Diamond","Coal","Emerald","Magnetite","Void Shard"
+}
+
+------------------------------------------------------
+if game.CoreGui:FindFirstChild("HkbLbWscRa7b7jogdSlb") then
+    game.CoreGui:FindFirstChild("HkbLbWscRa7b7jogdSlb"):Destroy()
+end
+
+
+local library = loadstring(request({Url='https://raw.githubusercontent.com/RelapseDevX/qfqawfgqw3g/refs/heads/main/menu.lua'; Method='GET'}).Body)();
+menu.bg.pre.Text = 'UV Crayfish | booga booga reborn'
+
+local combatwindow = library:addTab("combat")
+local visualswindow = library:addTab("visuals")
+local localwindow = library:addTab("local")
+local worldwindow = library:addTab("world")
+local configwindow = library:addTab("configs")
+-- combat
+local aimbottab = combatwindow:createGroup('left', 'aimbot')
+local esptab = visualswindow:createGroup('left', 'player visuals')
+local settingstab = combatwindow:createGroup('center', 'player info')
+local killauratab = combatwindow:createGroup('left', 'kill aura')
+local hitboxtab = combatwindow:createGroup('right', 'hitbox expander')
+local lightingtab = worldwindow:createGroup('right', 'lighting')
+local proectiles = combatwindow:createGroup('right', 'projectile')
+local hitsoundsd = combatwindow:createGroup('center', 'hitsounds')
+-- settings
+local configtab = configwindow:createGroup('left', 'Configs')
+local menusettins = configwindow:createGroup('center', 'UI settings')
+local gametab = configwindow:createGroup('center', 'Game Settings')
+local infotab = configwindow:createGroup('right', 'Information')
+local teleesss = configwindow:createGroup('right', 'teleports')
+------------------------------------------------------
+local getservice     = game.GetService;
+local getupvalues    = debug.getupvalues;
+local color3         = Color3.fromRGB;
+local decode         = base64.decode;
+local vec2           = Vector2.new
+local vec3           = Vector3.new
+local place          = game.PlaceId
+local job            = game.JobId
+------------------------------------------------------
+local plrs   = getservice(game, "Players");
+local rs     = getservice(game, "RunService");
+local uis    = getservice(game, "UserInputService");
+local sound  = getservice(game, "SoundService");
+local rep    = getservice(game, "ReplicatedStorage");
+local light  = getservice(game, "Lighting");
+local tele   = getservice(game, "TeleportService")
+local lp     = plrs.LocalPlayer;
+local cam    = workspace.CurrentCamera;
+local mouse  = uis:GetMouseLocation();
+local wplrs  = workspace.Players;
+------------------------------------------------------ game locals
+local projectile = require(lp.PlayerScripts.src.Game.Classes.Projectile)
+local hit        = lp.PlayerGui.MainGui.Panels.Target.HealthBackdrop 
+local Slash      = require(lp.PlayerScripts.src.Game.Tool.Slash)
+local items = workspace.Items;
+local packets = require(rep.Modules.Packets);
+local function pick(id)
+    if packets.Pickup.send then
+        packets.Pickup.send(id)
+    end
+end
+local oldfog     = light.FogEnd;
+local walkspeed_enabled = false;
+local walkspeed  = 16;
+local humanoid = lp.Character.Humanoid;
+------------------------------------------------------
+local noslowdown  = false;
+local fov_changer = false;
+local fov_amount  = 70;
+local nograss     = false;
+local nofog       = false;
+local noshadows   = false;
+local silent_aim  = false;
+local prediction  = false;
+local max_draw_strength = false;
+local fovcircle   = false;
+local snaplines   = false;
+local followmouse = false;
+local mastdis     = 1500;
+local eehitchance = 100
+local hitbox      = false
+local hbx = 5;
+local hby = 5;
+local hbz = 5;
+local face_invisible = false;
+local hitbox_trans= 50
+local hitsoundss   = false 
+local soundf       = sounds["Rust"]
+local sound_volume = 1
+local box      = false;
+local distance = false;
+local item     = false;
+local name     = false;
+local healthbar= false;
+local inventory_viewer = false;
+local killaura = false;
+local kdistance= 5
+local spider = false;
+local auto_item = false;
+local auto_item_dist = 15;
+local ray_length = 4;
+------------------------------------------------------
+local fov_circle = Drawing.new("Circle")
+fov_circle.Radius = 120
+fov_circle.Color = color3(255,255,255)
+fov_circle.Transparency = 1
+fov_circle.Thickness = 1
+fov_circle.Filled = false
+
+local snapline = Drawing.new("Line")
+snapline.Color = color3(255,255,255)
+snapline.Transparency = 1
+snapline.Thickness = 1
+snapline.Visible = false
+
+local function get_players()
+    local selected, m = nil, math.huge
+    for i,v in pairs(wplrs:GetChildren()) do
+        if v.PrimaryPart and v.Name ~= lp.Name then
+            local pos, vis = cam:WorldToViewportPoint(v.PrimaryPart.Position)
+            local magnitude = (vec2(pos.X, pos.Y) - cursor).magnitude
+            local distance = (cam.CFrame.Position - v.PrimaryPart.Position).magnitude
+            if magnitude < fov_circle.Radius and distance <= mastdis and magnitude < m and vis then
+                m = magnitude
+                selected = v
+            end
+        end
+    end
+    return selected
+end
+
+local function getweapon(player)
+    local tool = player:FindFirstChild("Tools"):FindFirstChildOfClass("Model")
+    if tool then
+        return tool.Name
+    end
+    return "none"
+end
+
+local function getarmor(player)
+    local head, torso, legs = nil, nil, nil
+    for _,v in pairs(player:GetChildren()) do
+        if table.find(armor,v.Name) then
+            local name = v.Name:lower()
+            if name:find("helmet") or name:find("mask") or name:find("crown") or name:find("hood") or name:find("halo") then
+                head = v.Name
+            elseif name:find("chestplate") or name:find("shirt") or name:find("shroud") then
+                torso = v.Name
+            elseif name:find("greaves") or name:find("pants") or name:find("legs") then
+                legs = v.Name
+            end
+        end
+    end
+    return head or "none", torso or "none", legs or "none"
+end
+
+-----------------------------------------------------
+local l_Players_0 = game:GetService("Players");
+local l_ReplicatedStorage_0 = game:GetService("ReplicatedStorage");
+
+local v3 = require(l_ReplicatedStorage_0.Modules.ItemData);
+local v4 = require(l_ReplicatedStorage_0.Modules.SkinData);
+local v5 = require(l_ReplicatedStorage_0.Modules.ItemIDS);
+local v6 = require(l_ReplicatedStorage_0.Modules.Packets);
+local v7 = require(l_ReplicatedStorage_0.Modules.GameUtil);
+
+local function v33(v22, v23, v24) --[[ Line: 89 ]] --[[ Name: getProjectileName ]]
+      if v23 and v24 then
+            return v23, v24;
+      else
+            local l_projectileName_0 = v22.projectileName;
+            local l_l_projectileName_0_0 = l_projectileName_0;
+            local v27 = v5[v22.toolID];
+            for _, v29 in {
+                  v7.Data.equippedSkins.Bow, 
+                  v7.Data.equippedSkins.Crossbow, 
+                  v7.Data.equippedSkins.Sling
+            } do
+                  if v29.serial ~= "none" then
+                  local v30 = v4[v29.equippedName];
+                  if v30 then
+                        for _, v32 in v4.types[v30.typeOf] do
+                              if string.match(v27, v32) then
+                                    l_l_projectileName_0_0 = v29.equippedName;
+                                    break;
+                              end;
+                        end;
+                  end;
+                  end;
+            end;
+            return l_l_projectileName_0_0, l_projectileName_0;
+      end;
+end;
+
+local function v21(v15) --[[ Line: 70 ]] --[[ Name: playerInBallista ]]
+    local l_l_Players_0_PlayerFromCharacter_0 = l_Players_0:GetPlayerFromCharacter(v15);
+    if not l_l_Players_0_PlayerFromCharacter_0 then
+        return;
+    else
+        local l_l_l_Players_0_PlayerFromCharacter_0_Attribute_0 = l_l_Players_0_PlayerFromCharacter_0:GetAttribute("InBallista");
+        if not l_l_l_Players_0_PlayerFromCharacter_0_Attribute_0 then
+            return;
+        else
+            local v18 = v11.GetEntity(l_l_l_Players_0_PlayerFromCharacter_0_Attribute_0);
+            if not v18 then
+                return;
+            else
+                local l_v18_Attribute_0 = v18:GetAttribute("Projectile");
+                if not l_v18_Attribute_0 then
+                    return;
+                else
+                    local l_v18_Attribute_1 = v18:GetAttribute("ProjectileDamageName");
+                    if not l_v18_Attribute_1 then
+                        return;
+                    else
+                        return l_v18_Attribute_0, l_v18_Attribute_1;
+                    end;
+                end;
+            end;
+        end;
+    end;
+end;
+
+local old = _G.old or projectile.new;
+_G.old = old;
+
+projectile.new = function(...)
+    local v52 = ...
+    if not silent_aim or not target or not target:FindFirstChild("Head") or not v52.owner or (eehitchance < 100 and math.random(1,100) > eehitchance) then
+        return old(...)
+    end
+
+    local v54, v55 = v21(v52.character)
+    local v56, v57 = v33(v52, v54, v55)
+
+    local v53 = v3[v5[v52.toolID]]
+    local l_character_0 = v3[v57]
+
+    local additionalGravity = l_character_0.additionalGravity or 0
+    local additionalVelocity = l_character_0.additionalVelocity or 0
+    local weaponSpeed = (v53.velocityMagnitude + additionalVelocity) * v52.drawStrength
+
+    local gravity = Vector3.yAxis * -122.2 + Vector3.yAxis * additionalGravity
+    local originPos = v52.originCF.Position
+    local targetPos = target.Head.Position
+
+    local aimAt
+    if prediction then
+        local distance = (targetPos - originPos).Magnitude
+        local timeToHit = distance / weaponSpeed
+
+        local rawVelocity = target:FindFirstChild("HumanoidRootPart") and target.HumanoidRootPart.Velocity or Vector3.zero
+        local pvelocity = Vector3.new(rawVelocity.X, 0, rawVelocity.Z)
+
+        local predicted = targetPos + (pvelocity * timeToHit)
+        local gravityDrop = gravity * timeToHit^2 / 2
+        aimAt = predicted - gravityDrop
+    else
+        aimAt = targetPos
+    end
+
+    v52.originCF = CFrame.new(originPos, aimAt)
+
+    return old(...)
+end
+
+local oldnew = projectile.new; projectile.new = function(self)
+    if max_draw_strength then
+        self.drawStrength = 1;
+    end;
+    return oldnew(self);
+end;
+task.spawn(function()
+    while task.wait(3) do
+        for i, v in pairs(wplrs:GetChildren()) do
+            if v.Name ~= lp.Name and v:FindFirstChild("Head") then
+                if hitbox then
+                    v.Head.Size = vec3(hbx, hby, hbz)
+                    v.Head.Transparency = hitbox_trans / 100
+                    v.Head.Massless = true
+                else
+                    v.Head.Size = vec3(2, 1, 1)
+                    v.Head.Transparency = 0
+                    v.Head.Massless = true
+                end
+                if v.Head:FindFirstChild("Face") then
+                    v.Head.Face.Transparency = face_invisible and 1 or 0
+                end
+            end
+        end
+    end
+end)
+
+local function hitsound()
+    local custom = Instance.new("Sound")
+    custom.SoundId = soundf
+    custom.Volume = sound_volume
+    custom.PlaybackSpeed = 1
+    custom.RollOffMaxDistance = 10000
+    custom.Parent = sound
+    custom:Play()
+    custom.Ended:Connect(function() custom:Destroy() end)
+end
+
+local last = ""
+task.spawn(function()
+    while true do
+        local name,health = hit.Title.Text,hit.HealthLabel.Text
+        local id = name .. health
+        if hit.Parent.Visible and plrs:FindFirstChild(name) and id ~= last and hitsoundss then
+            last = id
+            hitsound()
+        end
+        task.wait(0)
+    end
+end)
+
+task.spawn(function()
+    while true do
+        for i,v in pairs(wplrs:GetChildren()) do
+            if v:FindFirstChild("HumanoidRootPart") and v.Name ~= lp.Name and killaura then
+                local distance = (lp.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude
+                if distance <= kdistance then
+                    Slash({useType = "SlashAnimation"})
+                end
+            end
+        end
+        task.wait(0)
+    end
+end)
+
+task.spawn(function()
+    while task.wait(0.1) do
+        if sel and auto_item then
+            for _,v in ipairs(items:GetChildren()) do
+                if (v:IsA("BasePart") or v:IsA("MeshPart")) and sel[v.Name] and v:GetAttribute("EntityID") and (v.Position - lp.Character.HumanoidRootPart.Position).Magnitude <= auto_item_dist then
+                    pick(v:GetAttribute("EntityID"))
+                end
+            end
+        end
+    end
+end)
+
+rs.RenderStepped:Connect(function()
+    local mouse  = uis:GetMouseLocation();
+    getgenv().cursor = followmouse and vec2(mouse.X,mouse.Y) or vec2(cam.ViewportSize.X / 2, cam.ViewportSize.Y / 2)
+    target = get_players();
+if target then local pos, vis = cam:WorldToViewportPoint(target.PrimaryPart.Position);
+    snapline.Visible = snaplines
+    if vis then snapline.To = vec2(pos.X,pos.Y) end
+    getarmor(target)
+else
+    snapline.Visible = false
+end
+if followmouse then
+    fov_circle.Position = vec2(mouse.X,mouse.Y)
+    snapline.From = vec2(mouse.X,mouse.Y)
+elseif not followmouse then
+    fov_circle.Position = vec2(cam.ViewportSize.X/2, cam.ViewportSize.Y/2)
+    snapline.From = vec2(cam.ViewportSize.X/2, cam.ViewportSize.Y/2)
+    end
+    -- inventiroy viewer functions
+    if inventory_viewer then
+        BG.Visible = true
+    else
+        BG.Visible = false
+    end
+    if target then 
+        Main.Visible = true
+        PlayersInfo.Text = target.Name .. "'s Info"
+        Weapon.Text = "Weapon  <font color=\"" .. invColor .. "\">></font> " .. getweapon(target)
+
+        local head, torso, leg = getarmor(target)
+        Head.Text = "Head  <font color=\"" .. invColor .. "\">>  </font> " .. head
+        Torso.Text = "Torso  <font color=\"" .. invColor .. "\">>  </font> " .. torso
+        Legs.Text = "Legs  <font color=\"" .. invColor .. "\">>  </font> " .. leg
+        local distance = (lp.Character.HumanoidRootPart.Position - target.HumanoidRootPart.Position).Magnitude
+        Distance.Text = "Distance <font color=\"" .. invColor .. "\">></font> " .. math.floor(distance) .. " studs"
+    else
+        PlayersInfo.Text = "No Target"
+        Main.Visible = false
+        Distance.Text = ""
+    end
+    cam.FieldOfView = fov_changer and fov_amount or 70
+    light.FogEnd = nofog and math.huge or oldfog
+    if noslowdown then
+        if lp.Character.Humanoid.WalkSpeed ~= 16 then
+            lp.Character.Humanoid.WalkSpeed = 16
+        end
+    elseif walkspeed_enabled then
+        if lp.Character.Humanoid.WalkSpeed ~= walkspeed_value then
+            lp.Character.Humanoid.WalkSpeed = walkspeed_value
+        end
+    end
+    local origin = lp.Character.Head.Position
+    local dir = lp.Character.Head.CFrame.LookVector * ray_length
+    local ignore = {character}
+    for _,v in pairs(wplrs:GetDescendants()) do table.insert(ignore,v)end
+    local spiderray = RaycastParams.new()
+    spiderray.FilterDescendantsInstances = ignore
+    spiderray.FilterType = Enum.RaycastFilterType.Blacklist
+    local result = workspace:Raycast(origin, dir, spiderray)
+    if result and spider then
+        lp.Character.Head.Velocity = Vector3.new(0,30,0)
+    end
+end)
+
+---------------------------------------------------------------------------------------------
+aimbottab:addToggle({text = "silent aim",default = false,flag = "silentaimtog",risky = false,callback = function(state)
+     silent_aim = state   
+end})
+aimbottab:addToggle({text = "prediction",default = false,flag = "predtog",risky = false,callback = function(state)
+    prediction = state
+end})
+aimbottab:addSlider({text = "hitchance:                + -",flag = "hitchance_",min = 0,max = 100,default = 100,suffix = "/100",float = 1,callback = function(val)
+        eehitchance = val
+end})
+aimbottab:addSlider({text = "distance:                 + -",flag = "max dist",min = 0,max = 3000,default = 1500,suffix = "s/2500s",float = 1,callback = function(val)
+    mastdis = val
+end})
+aimbottab:addDivider({})
+aimbottab:addToggle({text = "fov circle",default = false,flag = "fov_enabled",risky = false,callback = function(state)
+    fov_circle.Visible = state
+end}):addColorpicker({text = "fov color",ontop = true,flag = "fov_color", color = Color3.fromRGB(255, 255, 255), callback = function(col)
+    fov_circle.Color = col
+end})
+aimbottab:addToggle({text = "snaplines",default = false,flag = "set_snap",risky = false,callback = function(state)
+    snaplines = state
+end}):addColorpicker({text = "snapline color",ontop = true,flag = "snap_color", color = Color3.fromRGB(255, 255, 255), callback = function(col)
+    snapline.Color = col
+end})
+aimbottab:addToggle({text = "outline",default = false,flag = "fov_outline",risky = false,callback = function(state)
+    
+end})
+aimbottab:addSlider({text = "size:                     + -",flag = "fov_size",min = 0,max = 750,default = 100,suffix = "/750",float = 1,callback = function(val)
+    fov_circle.Radius = val
+end})
+aimbottab:addToggle({text = "follow mouse",default = false,flag = "fovfollowmouse",risky = false,callback = function(state)
+    followmouse = state
+end})
+--fovcircletab:addDivider({})
+-- nigger box
+hitboxtab:addToggle({text = "enabled",default = false,flag = "hideface",risky = false,callback = function(state)
+    hitbox = state
+end})
+hitboxtab:addToggle({text = "hide face",default = false,flag = "hitbox_enabled",risky = false,callback = function(state)
+    face_invisible = state
+end})
+hitboxtab:addSlider({text = "x:                        + -",flag = "hitbox_x",min = 0,max = 12,default = 5,suffix = "/12",float = .1,callback = function(val)
+        hbx = val
+end})
+hitboxtab:addSlider({text = "y:                        + -",flag = "hitbox_y",min = 0,max = 12,default = 5,suffix = "/12",float = .1,callback = function(val)
+        hby = val
+end})
+hitboxtab:addSlider({text = "z:                        + -",flag = "hitbox_z",min = 0,max = 12,default = 5,suffix = "/12",float = .1,callback = function(val)
+        hbz = val
+end})
+hitboxtab:addSlider({text = "transparency:             + -",flag = "hbtr",min = 0,max = 100,default = 50,suffix = "/100",float = 1,callback = function(val)
+        hitbox_trans = val
+end})
+settingstab:addToggle({text = "inventory viewer",default = false,flag = "set_inv",risky = false,callback = function(state)
+        inventory_viewer = state
+end}):addColorpicker({text = "inventory viewer color",ontop = true,flag = "inv_color",color = Color3.fromRGB(3, 254, 254),callback = function(col)
+    invColor = string.format("rgb(%d, %d, %d)", col.R * 3, col.G * 254, col.B * 254)
+end})
+settingstab:addToggle({text = "draggable",default = false,flag = "inv_dragable.",risky = false,callback = function(state)
+    BG.Draggable = state
+end})
+lightingtab:addToggle({text = "fov changer",default = false,flag = "changeurfovnigga",risky = false,callback = function(state)
+    fov_changer = state
+end})
+lightingtab:addSlider({text = "amount:                   + -",flag = "afffff",min = 0,max = 120,default = 70,suffix = "/120",float = 1,callback = function(val)
+    fov_amount = val
+end})
+lightingtab:addToggle({text = "slope override",default = false,flag = "slopeshit",risky = false,callback = function(state)
+    humanoid.MaxSlopeAngle = state and math.huge or 46
+end})
+lightingtab:addToggle({text = "infinite zoom",default = false,flag = "infinite zoomff",risky = false,callback = function(state)
+    lp.CameraMaxZoomDistance = state and math.huge or 125
+end})
+lightingtab:addToggle({text = "remove grass",default = false,flag = "no_grass",risky = false,callback = function(state)
+    sethiddenproperty(workspace.Terrain,"Decoration",not state)
+
+end})
+lightingtab:addToggle({text = "remove shadows",default = false,flag = "no_shadwos",risky = false,callback = function(state)
+    light.GlobalShadows = not state
+end})
+lightingtab:addToggle({text = "remove fog",default = false,flag = "no_shadwos",risky = false,callback = function(state)
+    nofog = state
+end})
+lightingtab:addToggle({text = "spider",default = false,flag = "spider tog",risky = false,callback = function(state)
+    spider = state
+end}):addKeybind({text = "spider bind", flag = "spider_bind", key = Enum.KeyCode.F})
+lightingtab:addSlider({text = "ray length",flag = "ray_lengthh",min = 0,max = 6,default = 4,suffix = "/6",float = 1,callback = function(val)
+    ray_length = val
+end})
+esptab:addToggle({text = "bounding box",default = false,flag = "boxtog",risky = false,callback = function(state)
+    box = state
+end}):addColorpicker({text = "box color",ontop = true,flag = "boxcol", color = Color3.fromRGB(255,255,255), callback = function(col)
+
+end})
+esptab:addToggle({text = "name",default = false,flag = "nametog",risky = false,callback = function(state)
+    name = state
+end}):addColorpicker({text = "name color",ontop = true,flag = "name_color", color = Color3.fromRGB(255,255,255), callback = function(col)
+
+end})
+esptab:addToggle({text = "distance",default = false,flag = "distancetog",risky = false,callback = function(state)
+    distance = state
+end}):addColorpicker({text = "distance color",ontop = true,flag = "distcol", color = Color3.fromRGB(255,255,255), callback = function(col)
+
+end})
+esptab:addToggle({text = "item",default = false,flag = "itemtog",risky = false,callback = function(state)
+     item = state
+end}):addColorpicker({text = "itemcolor",ontop = true,flag = "itemcol", color = Color3.fromRGB(255,255,255), callback = function(col)
+
+end})
+esptab:addToggle({text = "Health",default = false,flag = "healthtog",risky = false,callback = function(state)
+       healthbar = state
+end})
+esptab:addSlider({text = "max distance:",flag = "maxdistance",min = 0,max = 3000,default = 1500,suffix = "/3000",float = 1,callback = function(val)
+        
+end})
+esptab:addDivider({})
+esptab:addToggle({text = "box outlines",default = false,flag = "boxutlines",risky = false,callback = function(state)
+        
+end})
+esptab:addToggle({text = "text outlines",default = false,flag = "textoutline",risky = false,callback = function(state)
+        
+end})
+killauratab:addToggle({text = "kill aura",default = false,flag = "killauratoggle",risky = false,callback = function(state)
+    killaura = state 
+end})
+killauratab:addSlider({text = "distance:                 + -",flag = "kadist",min = 0,max = 15,default = 5,suffix = "/15 studs",float = 1,callback = function(val)
+    kdistance = val
+end})
+
+proectiles:addToggle({text = "max draw strength",default = false,flag = "mds",risky = false,callback = function(state)
+     max_draw_strength = state
+end})
+
+hitsoundsd:addToggle({text = 'enabled',default = false,flag = "hsenabled",risky = false,callback = function(state)
+   hitsoundss = state 
+end})
+hitsoundsd:addList({text = "sound:",flag = "soundsfdf",values = {"Bubble","Call of Duty","CS:GO","Ding","Gamesense","Laser","Neverlose","Old Fatality","One","Pop","Rust","TF2","TF2 Critical"},callback = function(selected)
+    soundf = sounds[selected]
+end})
+hitsoundsd:addSlider({text = "volume:                   + -",flag = "hsvolue",min = 0,max = 5,default = 1,suffix = "/5",float = 1,callback = function(val)
+    sound_volume = val
+end})
+
+killauratab:addToggle({text = "walkspeed",default = false,flag = "speedtog",risky = false,callback = function(state)
+    walkspeed_enabled = state
+end})
+
+killauratab:addSlider({text = "speed:                   + -",flag = "wsspeed",min = 0,max = 21,default = 16,suffix = "/21",float = 1,callback = function(val)
+    walkspeed_value = val
+end})
+
+killauratab:addToggle({text = "noslowdown",default = false,flag = "noslowdowntog",risky = false,callback = function(state)
+    noslowdown = state
+end})
+lightingtab:addToggle({text = "auto pickup",default = false,flag = "autopik",risky = false,callback = function(state)
+    auto_item = state
+end}):addKeybind({text = "auto pickup bind", flag = "auto_pickup_bind", key = Enum.KeyCode.Z})
+lightingtab:addList({text = "items",flag = "pickup_item_flag",values = itemms,multiselect = true,callback = function(selected)
+local set = {}
+     for _, name in ipairs(selected) do
+        set[name] = true
+    end
+    sel = set
+end})
+
+lightingtab:addSlider({text = "distance:                   + -",flag = "dsfdsfdsfsdf",min = 0,max = 35,default = 15,suffix = "/35",float = 1,callback = function(val)
+    auto_item_dist = val
+end})
+--------------------------------------------------------------
+
+configtab:addTextbox({
+    text = "name:",
+    flag = "config_name",
+    callback = function(value)
+
+    end
+})
+
+configtab:addButton({
+    text = "create",
+    callback = function(value)
+        library:createConfig()
+    end
+})
+
+local configs = {}
+local folder = "vertical"
+
+for i,v in ipairs(listfiles(folder)) do
+    local name = v:match("^.+\\(.+)$")
+    table.insert(configs, name)
+end
+
+
+configtab:addConfigbox({
+    flag = 'configflag',
+    values = configs,
+    callback = function(value)
+        library.flags["selected_config"] = value
+    end
+})
+
+configtab:addButton({
+    text = "load",
+    callback = function(value)
+        library:loadConfig()
+    end
+})
+
+configtab:addButton({
+    text = "refresh",
+    callback = function(value)
+        library:refreshConfigs()
+    end
+})
+
+configtab:addButton({
+    text = "overwrite",
+    callback = function(value)
+        library:saveConfig()
+    end
+})
+
+configtab:addButton({
+    text = "delete",
+    callback = function(value)
+        library:deleteConfig()
+    end
+})
+
+menusettins:addColorpicker({text = "library color",ontop = true,flag = "lib_color", color = library.libColor, callback = function(value)
+    library.libColor = value
+end})
+menusettins:addToggle({
+    text = "menu bind",
+    default = false,
+    flag = "MenuBind_Toggle",
+    callback = function(state)
+        menu.Enabled = not menu.Enabled
+    end
+}):addKeybind({text = "menu bind", flag = "menu_bind", key = Enum.KeyCode.Insert})
+
+gametab:addToggle({
+    text = "anti afk", 
+    default = false, 
+    flag = "antiafk", 
+    risky = false,
+    callback = function(value)
+        localPlayer.Idled:Connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+})
+
+
+gametab:addButton({text = "copy discord",callback = function(value)
+        setclipboard("/paste")
+    end
+})
+
+gametab:addButton({
+    text = "unload",
+    callback = function(value)
+        game.CoreGui:FindFirstChild("HkbLbWscRa7b7jogdSlb"):Destroy()
+    end
+})
+
+gametab:addSlider({text = "fps cap",flag = "fps_cap_slider",min = 0,max = 240,default = 120,suffix = "/240",float = 1,callback = function(value)
+    setfpscap(value)
+end})
+
+
+
+local place = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+infotab:addLabel("game: " .. place)
+infotab:addLabel("username: " .. game.Players.LocalPlayer.Name .. "")
+infotab:addLabel("age: " .. game.Players.LocalPlayer.AccountAge .. "d")
+local playerLabel = infotab:addLabel("players: " .. #game.Players:GetPlayers())
+
+game.Players.PlayerAdded:Connect(function()
+    playerLabel.Text = "players: " .. #game.Players:GetPlayers()
+end)
+
+game.Players.PlayerRemoving:Connect(function()
+    playerLabel.Text = "players: " .. #game.Players:GetPlayers()
+end)
+
+
+teleesss:addButton({text = "void",callback = function(value)
+tele:Teleport(11879754496,lp) -- void
+end})
+teleesss:addButton({text = "over world",callback = function(value)
+    tele:Teleport(11729688377,lp) -- over world
+end})
+teleesss:addButton({text = "rejoin",callback = function(value)
+    tele:TeleportToPlaceInstance(game.PlaceId,game.JobId,lp) -- rejoin
+end})
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+local function createText()
+    local t = Drawing.new("Text")
+    t.Size = 12
+    t.Center = true
+    t.Outline = true
+    t.Color = Color3.fromRGB(255, 255, 255)
+    t.Visible = false
+    t.Font = 2
+    return t
+end
+
+local function createLine()
+    local l = Drawing.new("Line")
+    l.Thickness = 1
+    l.Color = Color3.fromRGB(0, 0, 0)
+    l.Visible = false
+    return l
+end
+
+local function createGradientBar(segmentCount)
+    local segments = {}
+    for i = 1, segmentCount do
+        local seg = Drawing.new("Square")
+        seg.Filled = true
+        seg.Thickness = 1
+        seg.Visible = false
+        table.insert(segments, seg)
+    end
+    return segments
+end
+
+local function createESP()
+    local healthBarBackground = Drawing.new("Square")
+    healthBarBackground.Filled = true
+    healthBarBackground.Color = Color3.new(0, 0, 0) 
+    healthBarBackground.Visible = false
+
+    return {
+        Box = (function()
+            local b = Drawing.new("Square")
+            b.Thickness = 1
+            b.Filled = false
+            b.Color = Color3.fromRGB(255,255,255)
+            b.Visible = false
+            return b
+        end)(),
+        OutlineTop = createLine(),
+        OutlineBottom = createLine(),
+        OutlineLeft = createLine(),
+        OutlineRight = createLine(),
+        Name = createText(),
+        Placeholder = createText(),
+        Distance = createText(),
+        HealthBar = createGradientBar(20),
+        HealthBarBackground = healthBarBackground 
+    }
+end
+
+local function hideESP(esp)
+    esp.Box.Visible = false
+    esp.Name.Visible = false
+    esp.Placeholder.Visible = false
+    esp.Distance.Visible = false
+    esp.OutlineTop.Visible = false
+    esp.OutlineBottom.Visible = false
+    esp.OutlineLeft.Visible = false
+    esp.OutlineRight.Visible = false
+    esp.HealthBarBackground.Visible = false
+    for _, seg in ipairs(esp.HealthBar) do
+        seg.Visible = false
+    end
+end
+
+local function updateESP(esp, minX, minY, maxX, maxY, player, dist)
+    local width = maxX - minX
+    local height = maxY - minY
+    local centerX = minX + width / 2
+
+    esp.Box.Visible = box
+    if box then
+        esp.Box.Position = Vector2.new(minX, minY)
+        esp.Box.Size = Vector2.new(width, height)
+    end
+
+    esp.OutlineTop.Visible = box
+    esp.OutlineBottom.Visible = box
+    esp.OutlineLeft.Visible = box
+    esp.OutlineRight.Visible = box
+
+    if box then
+        esp.OutlineTop.From = Vector2.new(minX - 1, minY - 1)
+        esp.OutlineTop.To = Vector2.new(maxX + 1, minY - 1)
+
+        esp.OutlineBottom.From = Vector2.new(minX - 1, maxY + 1)
+        esp.OutlineBottom.To = Vector2.new(maxX + 1, maxY + 1)
+
+        esp.OutlineLeft.From = Vector2.new(minX - 1, minY - 1)
+        esp.OutlineLeft.To = Vector2.new(minX - 1, maxY + 1)
+
+        esp.OutlineRight.From = Vector2.new(maxX + 1, minY - 1)
+        esp.OutlineRight.To = Vector2.new(maxX + 1, maxY + 1)
+    end
+
+    esp.Name.Visible = name
+    if name then
+        esp.Name.Position = Vector2.new(centerX, minY - 15)
+        esp.Name.Text = player.Name
+    end
+
+    esp.Placeholder.Visible = item
+    if item then
+        esp.Placeholder.Position = Vector2.new(centerX, maxY + 2)
+        esp.Placeholder.Text = getweapon(player)
+    end
+
+    esp.Distance.Visible = distance
+    if distance then
+        esp.Distance.Position = Vector2.new(centerX, maxY + 16)
+        esp.Distance.Text = tostring(math.floor(dist)) .. "s"
+    end
+    if healthbar then
+    local hum = player:FindFirstChildOfClass("Humanoid")
+    if hum then
+        local healthPercent = math.clamp(hum.Health / hum.MaxHealth, 0, 1)
+        local barWidth = 4
+        local barHeight = maxY - minY
+        local segments = esp.HealthBar
+        local totalSegments = #segments
+        local activeSegments = math.floor(totalSegments * healthPercent)
+
+        local bg = esp.HealthBarBackground
+        bg.Visible = true
+        bg.Size = Vector2.new(barWidth, barHeight)
+        bg.Position = Vector2.new(minX - barWidth - 1, minY)
+
+        for i, seg in ipairs(segments) do
+            if i <= activeSegments then
+                local segmentHeight = barHeight / totalSegments
+                local y = minY + barHeight - (i * segmentHeight)
+
+                seg.Position = Vector2.new(minX - barWidth - 1, y)
+                seg.Size = Vector2.new(barWidth, segmentHeight)
+                seg.Color = Color3.fromRGB(
+                    255 - (i / totalSegments) * 255,
+                    (i / totalSegments) * 255,
+                    0
+                )
+                seg.Visible = true
+            else
+                seg.Visible = false
+            end
+        end
+    end
+end
+end
+
+local function getBoundingBox(cf, size)
+    local corners = {}
+    for x = -1, 1, 2 do
+        for y = -1, 1, 2 do
+            for z = -1, 1, 2 do
+                local offset = Vector3.new(size.X / 2 * x, size.Y / 2 * y, size.Z / 2 * z)
+                table.insert(corners, (cf * CFrame.new(offset)).Position)
+            end
+        end
+    end
+    return corners
+end
+
+local espBoxes = {}
+
+rs.RenderStepped:Connect(function()
+    for _, esp in pairs(espBoxes) do
+        hideESP(esp)
+    end
+
+    local myHRP = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
+    if not myHRP then return end
+
+    for _, player in pairs(wplrs:GetChildren()) do
+        if player:IsA("Model") and player ~= lp.Character then
+            local hrp = player:FindFirstChild("HumanoidRootPart")
+            local hum = player:FindFirstChildOfClass("Humanoid")
+            if hrp and hum and hum.Health > 0 then
+                local size = hum.HipHeight > 0 and Vector3.new(4, 7, 2) or Vector3.new(4, 6, 2)
+                local corners = getBoundingBox(hrp.CFrame, size)
+
+                local minX, minY = math.huge, math.huge
+                local maxX, maxY = -math.huge, -math.huge
+                local onScreen = false
+
+                for _, corner in pairs(corners) do
+                    local pos, visible = cam:WorldToViewportPoint(corner)
+                    if visible then
+                        onScreen = true
+                    end
+                    minX = math.min(minX, pos.X)
+                    minY = math.min(minY, pos.Y)
+                    maxX = math.max(maxX, pos.X)
+                    maxY = math.max(maxY, pos.Y)
+                end
+
+                if onScreen then
+                    if not espBoxes[player] then
+                        espBoxes[player] = createESP()
+                    end
+
+                    local distance = (hrp.Position - myHRP.Position).Magnitude
+                    updateESP(espBoxes[player], minX, minY, maxX, maxY, player, distance)
+                end
+            end
+        end
+    end
+end)
+
