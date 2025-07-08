@@ -160,6 +160,7 @@ local sounds = {
     Ding = "rbxassetid://7149516994",
     Gamesense   = "rbxassetid://4817809188",
     Laser       = "rbxassetid://7837461331",
+    Minecraft   = "rbxassetid://8766809464",
     Neverlose     = "rbxassetid://8726881116",
     ["Old Fatality"] = "rbxassetid://6607142036",
     One = "rbxassetid://7380502345",
@@ -715,7 +716,7 @@ end})
 hitsoundsd:addToggle({text = 'enabled',default = false,flag = "hsenabled",risky = false,callback = function(state)
    hitsoundss = state 
 end})
-hitsoundsd:addList({text = "sound:",flag = "soundsfdf",values = {"Bubble","Call of Duty","CS:GO","Ding","Gamesense","Laser","Neverlose","Old Fatality","One","Pop","Rust","TF2","TF2 Critical"},callback = function(selected)
+hitsoundsd:addList({text = "sound:",flag = "soundsfdf",values = {"Bubble","Call of Duty","CS:GO","Ding","Gamesense","Laser","Minecraft","Neverlose","Old Fatality","One","Pop","Rust","TF2","TF2 Critical"},callback = function(selected)
     soundf = sounds[selected]
 end})
 hitsoundsd:addSlider({text = "volume:                   + -",flag = "hsvolue",min = 0,max = 5,default = 1,suffix = "/5",float = 1,callback = function(val)
