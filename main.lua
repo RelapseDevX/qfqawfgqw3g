@@ -13,7 +13,7 @@ local tweenService   = cloneref(UserSettings().GetService(game,"TweenService"));
 local players        = cloneref(UserSettings().GetService(game,"Players"));
 local localPlayer    = players.LocalPlayer
 local mouse          = cloneref(localPlayer:GetMouse())
-getgenv().menu           = game:GetObjects("rbxassetid://85426532707260")[1]
+getgenv().menu           = game:GetObjects("rbxassetid://10334577211")[1]
 local Tween = loadstring(clonefunction(game.HttpGet)(game,"https://pastebin.com/raw/GRtM1ysK"))()
 
 local notifications1 = {}
@@ -30,7 +30,7 @@ getgenv().library = {
     playing = false;
     multiZindex = 200;
     toInvis = {};
-    libColor = Color3.fromRGB(255, 225, 0);
+    libColor = Color3.fromRGB(127, 110, 234);
     disabledcolor = Color3.fromRGB(233, 0, 0);
     menubind = Enum.KeyCode.Insert;
     blacklisted = {
