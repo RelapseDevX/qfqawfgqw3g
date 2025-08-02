@@ -193,7 +193,7 @@ local esptab = visualswindow:createGroup('left', 'player visuals')
 local settingstab = combatwindow:createGroup('center', 'player info')
 local killauratab = combatwindow:createGroup('left', 'kill aura')
 local hitboxtab = combatwindow:createGroup('right', 'hitbox expander')
-local lightingtab = worldwindow:createGroup('right', 'lighting')
+local lightingtab = worldwindow:createGroup('left', 'lighting')
 local proectiles = combatwindow:createGroup('right', 'projectile')
 local hitsoundsd = combatwindow:createGroup('center', 'hitsounds')
 -- settings
@@ -202,6 +202,8 @@ local menusettins = configwindow:createGroup('center', 'UI settings')
 local gametab = configwindow:createGroup('center', 'Game Settings')
 local infotab = configwindow:createGroup('right', 'Information')
 local teleesss = configwindow:createGroup('right', 'teleports')
+-- local
+local localplayertab = localwindow:createGroup('left', 'local player')
 ------------------------------------------------------
 local getservice     = game.GetService;
 local getupvalues    = debug.getupvalues;
@@ -708,7 +710,6 @@ end})
 killauratab:addSlider({text = "distance:                 + -",flag = "kadist",min = 0,max = 15,default = 5,suffix = "/15 studs",float = 1,callback = function(val)
     kdistance = val
 end})
-
 proectiles:addToggle({text = "max draw strength",default = false,flag = "mds",risky = false,callback = function(state)
      max_draw_strength = state
 end})
@@ -723,15 +724,15 @@ hitsoundsd:addSlider({text = "volume:                   + -",flag = "hsvolue",mi
     sound_volume = val
 end})
 
-killauratab:addToggle({text = "walkspeed",default = false,flag = "speedtog",risky = false,callback = function(state)
+localplayertab:addToggle({text = "walkspeed",default = false,flag = "speedtog",risky = false,callback = function(state)
     walkspeed_enabled = state
 end})
 
-killauratab:addSlider({text = "speed:                   + -",flag = "wsspeed",min = 0,max = 21,default = 16,suffix = "/21",float = 1,callback = function(val)
+localplayertab:addSlider({text = "speed:                   + -",flag = "wsspeed",min = 0,max = 21,default = 16,suffix = "/21",float = 1,callback = function(val)
     walkspeed_value = val
 end})
 
-killauratab:addToggle({text = "noslowdown",default = false,flag = "noslowdowntog",risky = false,callback = function(state)
+localplayertab:addToggle({text = "noslowdown",default = false,flag = "noslowdowntog",risky = false,callback = function(state)
     noslowdown = state
 end})
 lightingtab:addToggle({text = "auto pickup",default = false,flag = "autopik",risky = false,callback = function(state)
