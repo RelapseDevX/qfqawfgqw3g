@@ -224,9 +224,9 @@ local cam    = workspace.CurrentCamera;
 local mouse  = uis:GetMouseLocation();
 local wplrs  = workspace.Players;
 ------------------------------------------------------ game locals
-local projectile = require(lp.PlayerScripts.src.Game.Classes.Projectile)
+local projectile = require(lp.PlayerScripts.src.Game.classes.projectile)
 local hit        = lp.PlayerGui.MainGui.Panels.Target.HealthBackdrop 
-local Slash      = require(lp.PlayerScripts.src.Game.Tool.Slash)
+local Slash      = require(lp.PlayerScripts.src.Game.tool.Slash)
 local items = workspace.Items;
 local packets = require(rep.Modules.Packets);
 local function pick(id)
@@ -1099,4 +1099,3 @@ rs.RenderStepped:Connect(function()
         end
     end
 end)
-
