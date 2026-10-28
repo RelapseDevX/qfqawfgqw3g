@@ -20,6 +20,98 @@ local notifications1 = {}
 local notifications2 = {}
 menu.bg.Position     = UDim2.new(0.5,-menu.bg.Size.X.Offset/2,0.5,-menu.bg.Size.Y.Offset/2)
 menu.Parent = cloneref(UserSettings().GetService(game,"CoreGui"))
+
+-- Glow Removal Logic
+task.spawn(function()
+    task.wait(0.1)
+    for _, v in ipairs(menu:GetDescendants()) do
+        if v:IsA("ImageLabel") and (v.Name:lower():find("glow") or v.Name:lower():find("shadow") or v.Name:lower():find("outline")) then
+            v.Visible = false
+        elseif v:IsA("UIStroke") then
+            v.Thickness = 1
+            v.Transparency = 1
+        end
+    end
+end)
+
+-- Animated Wave Title Logic
+task.spawn(function()
+    local originalTitleText = menu.bg.pre.Text
+    local originalFont = menu.bg.pre.Font
+    local txtSize = menu.bg.pre.TextSize > 0 and menu.bg.pre.TextSize or 14
+    if menu.bg.pre.TextScaled then
+        txtSize = math.max(14, menu.bg.pre.AbsoluteSize.Y * 0.5)
+    end
+    
+    menu.bg.pre.Text = "" -- Hide the original text
+    
+    local titleContainer = Instance.new("Frame")
+    titleContainer.Name = "WaveTitleContainer"
+    titleContainer.BackgroundTransparency = 1
+    titleContainer.Size = UDim2.new(1, 0, 1, 0)
+    titleContainer.Parent = menu.bg.pre
+    
+    local letters = {}
+    local totalWidth = 0
+    
+    -- First pass: create labels
+    for i = 1, #originalTitleText do
+        local char = originalTitleText:sub(i, i)
+        
+        local label = Instance.new("TextLabel")
+        label.BackgroundTransparency = 1
+        label.Font = originalFont
+        label.TextSize = txtSize
+        label.Text = char
+        label.Size = UDim2.new(0, 0, 0, 0)
+        label.AutomaticSize = Enum.AutomaticSize.XY
+        label.AnchorPoint = Vector2.new(0, 0.5)
+        label.Parent = titleContainer
+        
+        -- Setup Gradient
+        local gradient = Instance.new("UIGradient")
+        gradient.Color = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 30, 30)),
+            ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 30, 30))
+        })
+        gradient.Parent = label
+        
+        table.insert(letters, {label = label, gradient = gradient, char = char})
+    end
+    
+    -- Wait for AbsoluteSize to calculate
+    task.wait(0.1)
+    
+    -- Second pass: calculate positions
+    for _, data in ipairs(letters) do
+        data.width = data.label.AbsoluteSize.X
+        totalWidth += data.width
+    end
+    
+    local startX = -totalWidth / 2
+    
+    for i, data in ipairs(letters) do
+        data.baseX = startX
+        startX += data.width
+    end
+    
+    -- Animate
+    runService.RenderStepped:Connect(function()
+        if not titleContainer.Parent then return end
+        local time = tick()
+        for i, data in ipairs(letters) do
+            -- Wave motion
+            local offsetY = math.sin(time * 4 + i * 0.5) * 4
+            
+            data.label.Position = UDim2.new(0.5, data.baseX, 0.5, offsetY)
+            
+            -- Gradient animation
+            data.gradient.Offset = Vector2.new(math.sin(time * 2 + i * 0.2) * 0.5, 0)
+        end
+    end)
+end)
+
 getgenv().library = {
     colorpicking = false;
     tabbuttons = {};
@@ -30,7 +122,7 @@ getgenv().library = {
     playing = false;
     multiZindex = 200;
     toInvis = {};
-    libColor = Color3.fromRGB(127, 110, 234);
+    libColor = Color3.fromRGB(255, 30, 30); -- Changed from purple to red
     disabledcolor = Color3.fromRGB(233, 0, 0);
     menubind = Enum.KeyCode.Insert;
     blacklisted = {
@@ -230,7 +322,7 @@ function library:addTab(name)
             
             mid.Name = "mid"
             mid.Parent = tobble
-            mid.BackgroundColor3 = Color3.fromRGB(69, 23, 255)
+            mid.BackgroundColor3 = Color3.fromRGB(255, 30, 30) -- Changed from purple
             mid.BorderColor3 = Color3.fromRGB(30,30,30)
             mid.BorderSizePixel = 2
             mid.Size = UDim2.new(0, 10, 0, 10)
@@ -449,7 +541,7 @@ function library:addTab(name)
                 
                 mid.Name = "mid"
                 mid.Parent = colorpicker
-                mid.BackgroundColor3 = Color3.fromRGB(69, 23, 255)
+                mid.BackgroundColor3 = Color3.fromRGB(255, 30, 30) -- Changed from purple
                 mid.BorderColor3 = Color3.fromRGB(30,30,30)
                 mid.BorderSizePixel = 2
                 mid.Size = UDim2.new(1, 0, 1, 0)
@@ -1501,7 +1593,7 @@ end
 
             mid.Name = "mid"
             mid.Parent = colorpicker_2
-            mid.BackgroundColor3 = Color3.fromRGB(69, 23, 255)
+            mid.BackgroundColor3 = Color3.fromRGB(255, 30, 30) -- Changed from purple
             mid.BorderColor3 = Color3.fromRGB(30,30,30)
             mid.BorderSizePixel = 2
             mid.Size = UDim2.new(1, 0, 1, 0)
